@@ -7,11 +7,11 @@ using TMPro;
 
 public class CardDisplay : MonoBehaviour {
 
-	public TextMeshPro title;
-	public TextMeshPro posType;
-	public TextMeshPro negType;
-	public TextMeshPro posValue;
-	public TextMeshPro negValue;
+	public TextMeshProUGUI title;
+	public TextMeshProUGUI posType;
+	public TextMeshProUGUI negType;
+	public TextMeshProUGUI posValue;
+	public TextMeshProUGUI negValue;
 	public Image icon;
 	public Image background;
 
