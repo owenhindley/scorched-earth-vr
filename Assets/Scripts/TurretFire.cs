@@ -43,9 +43,9 @@ public class TurretFire : MonoBehaviour {
 	void Update () {
 
 		if (isFiring){
-			float timeInterval = Mathf.Lerp(minFireInterval, maxFireInterval, Mathf.Lerp(1.0f, 0.0f, rate));
+			float fireTimeInterval = Mathf.Lerp(minFireInterval, maxFireInterval, Mathf.Lerp(1.0f, 0.0f, rate));
 
-			if (Time.time - lastFireTime > timeInterval) {
+			if (Time.time - lastFireTime > fireTimeInterval) {
 				//Firing
 				lastFireTime = Time.time;
 
@@ -60,8 +60,8 @@ public class TurretFire : MonoBehaviour {
 					}
 				}
 			}
-			
 		}
+
 	}
 
 	private void DoOnTriggerStart(object sender, ControllerInteractionEventArgs e)
