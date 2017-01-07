@@ -15,6 +15,8 @@ public class CardSO : ScriptableObject {
 	public CardEffectType negativeType;
 	public int negativeValue = 0;
 	
+	public Color color;
+	public Sprite img;
 
 	public CardSO(){
 
