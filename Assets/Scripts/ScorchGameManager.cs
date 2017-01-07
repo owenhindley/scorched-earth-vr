@@ -50,6 +50,7 @@ public class ScorchGameManager : MonoBehaviour {
 	public GameObject gun;
 
 	public GameObject desktopCamera;
+
 	public GameObject viveCameraRig;
 
 	public TextMeshPro desktopInstruction;
@@ -144,6 +145,9 @@ public class ScorchGameManager : MonoBehaviour {
 
 		 desktopInstruction.gameObject.SetActive(true);
 		 desktopInstruction.SetText("Ready");
+
+		desktopCamera.SetActive (false);
+
 
 		 scoreboard.gameObject.SetActive(true);
 		 
@@ -274,6 +278,7 @@ public class ScorchGameManager : MonoBehaviour {
 		 scoreboard.gameObject.SetActive(false);
 
 		 // desktop camera - show cards view
+		desktopCamera.SetActive(true);
 		  desktopCamera.transform.position = chooseCardCameraPosition.position;
 		 desktopCamera.transform.rotation = chooseCardCameraPosition.rotation;
 
@@ -336,6 +341,7 @@ public class ScorchGameManager : MonoBehaviour {
 
 		  // hide scoreboard
 		 scoreboard.gameObject.SetActive(false);
+		desktopCamera.SetActive(true);
 
 		 // desktop camera - show cards view
 		  desktopCamera.transform.position = chooseCardCameraPosition.position;
