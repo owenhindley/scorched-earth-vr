@@ -16,8 +16,19 @@ public enum GameStates
 	Idle,
 	Ready,
 	Shooting,
-	ChooseCards
+	ChooseCards,
+	Win
 };
+
+public struct PlayerGunState
+{
+	public float Aim;
+	public float Size;
+	public float Rate;
+	public int Multi;
+	public float Guidance;
+	
+}
 
 public class ScorchGameManager : MonoBehaviour {
 
@@ -25,13 +36,21 @@ public class ScorchGameManager : MonoBehaviour {
 
 	public Action<GameStates> stateChanged;
 
+	public ChooseCardView cardView;
+	public List<CardSO> availableCards;
+
 	public GameObject desktopCamera;
 	public GameObject viveCameraRig;
 
 	public TowerManager playerATowers;
 	public TowerManager playerBTowers;
 
+	public PlayerGunState gunStateA;
+	public PlayerGunState gunStateB;
+
 	public Players currentPlayer = Players.A;
+
+	private int playerRoundScore = 0;
 
 	public StateMachine<GameStates> sm;
 
@@ -52,6 +71,7 @@ public class ScorchGameManager : MonoBehaviour {
 
 		sm.Changed += OnStateChanged;
 
+		cardView.CardSelected += OnCardChosen;
 	}
 
 	//Broadcast to system 
@@ -75,21 +95,150 @@ public class ScorchGameManager : MonoBehaviour {
 	 void Ready_Enter(){
 
 		 // TODO - put VR camera in correct base
-		 
 
+		 // desktop camera show Vive
+		 
+		 // show countdown
+
+		 // reset round scores (for checking later)
+		 playerRoundScore = 0;
+
+		 // change to shooting state
+		 DOVirtual.DelayedCall(5.0f, ()=>{
+			 sm.ChangeState(GameStates.Shooting);
+		 });
 	 }
 	 void Ready_Update(){}
-	 void Ready_Exit(){}
+	 void Ready_Exit(){
+
+
+
+	 }
 
 	 // SHOOTING
-	 void Shooting_Enter(){}
-	 void Shooting_Update(){}
-	 void Shooting_Exit(){}
+	 void Shooting_Enter(){
+
+		 // enable gun
+
+		 // enable tower checking
+		 if (currentPlayer == Players.A){
+			 playerBTowers.towerNumberChanged += OnTowerNumberChanged;
+			 playerATowers.towerNumberChanged -= OnTowerNumberChanged;
+		 } else {
+			 playerATowers.towerNumberChanged += OnTowerNumberChanged;
+			 playerBTowers.towerNumberChanged -= OnTowerNumberChanged;
+		 }
+
+	 }
+	 void Shooting_Update(){
+
+		 // reduce countdown
+
+		 // when it hits zero, exit state
+
+	 }
+	 void Shooting_Exit(){
+
+		 // hide gun
+
+		// count the number of towers knocked down this round, assign cards accordingly
+		int numberCardsToGive = 1;
+		numberCardsToGive += playerRoundScore;
+		numberCardsToGive = Mathf.Clamp(numberCardsToGive, 1, 5);
+
+		List<CardSO> newCards = new List<CardSO>();
+		for (int i=0; i < numberCardsToGive; i++){
+			int rndIndex = UnityEngine.Random.Range(0, availableCards.Count);
+			newCards.Add(availableCards[rndIndex]);
+		}		 
+		cardView.SetCards(newCards);
+		 
+		playerATowers.towerNumberChanged -= OnTowerNumberChanged;
+		playerBTowers.towerNumberChanged -= OnTowerNumberChanged;
+		
+		DOVirtual.DelayedCall(2.0f, ()=>{
+
+			sm.ChangeState(GameStates.ChooseCards);
+
+		});
+
+	 }
+
+	 void OnTowerNumberChanged(int number){
+		 playerRoundScore++;
+		 if (number == 0){
+			 sm.ChangeState(GameStates.Win);
+		 }
+	 }
 
 	 // CHOOSE CARDS
-	 void ChooseCards_Enter(){}
+	 void ChooseCards_Enter(){
+
+		 // desktop camera - show cards view
+
+		 // vr camera - show above battlefield
+
+	 }
 	 void ChooseCards_Update(){}
-	 void ChooseCards_Exit(){}
+	 void ChooseCards_Exit(){
+
+
+
+	 }
+
+
+	 void OnCardChosen(CardSO card){
+
+		 // here is where we apply the new settings
+		 if (currentPlayer == Players.A){
+			 // normal way around for player A
+			 applyEffectToPlayer(ref gunStateA, card.positiveType, card.positiveValue, true);
+			 applyEffectToPlayer(ref gunStateA, card.negativeType, card.negativeValue, false);
+			 // opposite way around for player B
+			 applyEffectToPlayer(ref gunStateB, card.positiveType, card.positiveValue, false);
+			 applyEffectToPlayer(ref gunStateB, card.negativeType, card.negativeValue, true);
+		 } else {
+			  // normal way around for player B
+			 applyEffectToPlayer(ref gunStateB, card.positiveType, card.positiveValue, true);
+			 applyEffectToPlayer(ref gunStateB, card.negativeType, card.negativeValue, false);
+			 // opposite way around for player A
+			 applyEffectToPlayer(ref gunStateA, card.positiveType, card.positiveValue, false);
+			 applyEffectToPlayer(ref gunStateA, card.negativeType, card.negativeValue, true);
+		 }
+
+		 sm.ChangeState(GameStates.Ready);
+	 }
+
+	 private void applyEffectToPlayer(ref PlayerGunState state, CardEffectType type, int val, bool positive){
+		 switch(type){
+			 case CardEffectType.Aim:
+			 	state.Aim += val * (positive ? 1.0f : -1.0f);
+			 break;
+			 case CardEffectType.Guidance:
+			 	state.Guidance += val * (positive ? 1.0f : -1.0f);
+			 break;
+			 case CardEffectType.Multi:
+			 	state.Multi += val * (positive ? 1 : -1);
+			 break;
+			 case CardEffectType.Rate:
+			 	state.Rate += val * (positive ? 1.0f : -1.0f);
+			 break;
+			  case CardEffectType.Size:
+			 	state.Size += val * (positive ? 1.0f : -1.0f);
+			 break;
+		 }
+	 }
+
+
+	 // WINNING
+	 void Win_Enter(){
+
+	 }
+	 void Win_Update(){
+	 }
+	 void Win_Exit(){
+
+	 }
 
 	 
 	
