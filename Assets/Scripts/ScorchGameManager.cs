@@ -97,7 +97,7 @@ public class ScorchGameManager : MonoBehaviour {
     {
 		Debug.Log ("**** State changed to " + newState);
 		currentState = newState;
-		stateChanged(newState);
+		stateChanged.Dispatch(newState);
     }
 
 	// IDLE
