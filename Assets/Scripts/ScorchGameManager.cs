@@ -37,6 +37,9 @@ public class ScorchGameManager : MonoBehaviour {
 
 	private static ScorchGameManager _instance; //Singleton that only lives for the duration of the scene
 
+	public float ShootingRoundDuration = 30.0f;
+	public float IntervalReady = 5.0f;
+
 	public GameStates currentState;
 
 	public Action<GameStates> stateChanged;
@@ -53,6 +56,7 @@ public class ScorchGameManager : MonoBehaviour {
 
 	public Transform chooseCardCameraPosition;
 	
+	public Scoreboard scoreboard;
 
 	public GameObject spawnA;
 	public GameObject spawnB;
@@ -68,7 +72,7 @@ public class ScorchGameManager : MonoBehaviour {
 
 	public Players currentPlayer = Players.B;
 
-	private int playerRoundScore = 0;
+	public int playerRoundScore = 0;
 
 	[InspectorButton("GotoCards")] public bool gotoCards = false;
 	[InspectorButton("GotoReady")] public bool gotoReady = false;
@@ -114,6 +118,9 @@ public class ScorchGameManager : MonoBehaviour {
 	// IDLE
 	 void Intro_Enter(){
 
+
+		 scoreboard.gameObject.SetActive(false);
+
 		// desktop camera - randomly above landscape
 		// vr camera - randomly above landscape
 
@@ -138,6 +145,7 @@ public class ScorchGameManager : MonoBehaviour {
 		 desktopInstruction.gameObject.SetActive(true);
 		 desktopInstruction.SetText("Ready");
 
+		 scoreboard.gameObject.SetActive(true);
 		 
 		 // switch players
 		 if (currentPlayer == Players.A){
@@ -166,10 +174,16 @@ public class ScorchGameManager : MonoBehaviour {
 		 // reset round scores (for checking later)
 		 playerRoundScore = 0;
 
-		 // change to shooting state
-		 DOVirtual.DelayedCall(5.0f, ()=>{
+		// countdown
+		 DOVirtual.Float(IntervalReady, 0.0f, IntervalReady, (float val)=>{
+
+			 scoreboard.setReady((int)val);
+
+		 }).OnComplete(()=>{
+
 			 sm.ChangeState(GameStates.Shooting);
-		 });
+
+		 }).SetEase(Ease.Linear);
 	 }
 	 void Ready_Update(){}
 	 void Ready_Exit(){
@@ -193,6 +207,17 @@ public class ScorchGameManager : MonoBehaviour {
 			 playerATowers.towerNumberChanged += OnTowerNumberChanged;
 			 playerBTowers.towerNumberChanged -= OnTowerNumberChanged;
 		 }
+
+		 // countdown
+		 DOVirtual.Float(ShootingRoundDuration, 0.0f, ShootingRoundDuration, (float val)=>{
+
+			 scoreboard.setTime(0, (int)val);
+
+		 }).OnComplete(()=>{
+
+			 sm.ChangeState(GameStates.ChooseCards);
+
+		 }).SetEase(Ease.Linear);
 
 	 }
 	 void Shooting_Update(){
@@ -231,6 +256,7 @@ public class ScorchGameManager : MonoBehaviour {
 	 }
 
 	 void OnTowerNumberChanged(int number){
+		 Debug.Log("tower number changed");
 		 playerRoundScore++;
 		 if (number == 0){
 			 sm.ChangeState(GameStates.Win);
@@ -239,6 +265,9 @@ public class ScorchGameManager : MonoBehaviour {
 
 	 // CHOOSE CARDS
 	 void ChooseCards_Enter(){
+
+		 // hide scoreboard
+		 scoreboard.gameObject.SetActive(false);
 
 		 // desktop camera - show cards view
 		  desktopCamera.transform.position = chooseCardCameraPosition.position;

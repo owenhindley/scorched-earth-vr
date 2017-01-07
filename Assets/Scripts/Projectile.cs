@@ -36,9 +36,15 @@ public class Projectile : MonoBehaviour {
 		transform.Rotate (Vector3.right, 90);
 
 		//Guide
-		Vector3 magnetField = targetTower.position- transform.position;
-		float index = (radius-magnetField.magnitude)/radius;
-		GetComponent<Rigidbody>().AddForce(force*magnetField*index);
+		if (targetTower != null){
+			Vector3 magnetField = targetTower.position- transform.position;
+			float index = (radius-magnetField.magnitude)/radius;
+			GetComponent<Rigidbody>().AddForce(force*magnetField*index);
+
+		}else {
+			Debug.LogError("target tower is null");
+		}
+		
 	}
 
 	public void SetAttributes(float size, float aim, float guide) {
