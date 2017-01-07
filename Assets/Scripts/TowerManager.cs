@@ -37,7 +37,7 @@ public class TowerManager : MonoBehaviour {
 		}
 
 
-		towerNumberChanged(numberAliveTowers);
+		towerNumberChanged.Dispatch(numberAliveTowers);
 		
 	}
 
@@ -45,7 +45,7 @@ public class TowerManager : MonoBehaviour {
 		towers.Remove(ti);
 		ti.hit -= OnTowerHit;
 		numberAliveTowers--;
-		towerNumberChanged(numberAliveTowers);
+		towerNumberChanged.Dispatch(numberAliveTowers);
 	}
 	
 	// Update is called once per frame

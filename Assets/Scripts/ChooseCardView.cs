@@ -59,7 +59,7 @@ public class ChooseCardView : MonoBehaviour {
 		}
 
 		if (Input.GetKeyDown(KeyCode.Return)){
-			CardSelected(cards[cardSelectedIndex].cardData);
+			CardSelected.Dispatch(cards[cardSelectedIndex].cardData);
 		}
 		
 	}
