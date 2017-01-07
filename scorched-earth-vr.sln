@@ -1,0 +1,25 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{8C0BCD91-5610-39CA-6871-2C3CE255434A}") = "scorched-earth-vr", "Assembly-CSharp.csproj", "{90FDB5DA-F9BC-5146-9E55-FC0DE534B928}"
+EndProject
+Project("{8C0BCD91-5610-39CA-6871-2C3CE255434A}") = "scorched-earth-vr", "Assembly-CSharp-Editor.csproj", "{60500E7A-FF7E-BD74-9C45-F25664AD21C9}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{90FDB5DA-F9BC-5146-9E55-FC0DE534B928}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{90FDB5DA-F9BC-5146-9E55-FC0DE534B928}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{90FDB5DA-F9BC-5146-9E55-FC0DE534B928}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{90FDB5DA-F9BC-5146-9E55-FC0DE534B928}.Release|Any CPU.Build.0 = Release|Any CPU
+		{60500E7A-FF7E-BD74-9C45-F25664AD21C9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{60500E7A-FF7E-BD74-9C45-F25664AD21C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{60500E7A-FF7E-BD74-9C45-F25664AD21C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{60500E7A-FF7E-BD74-9C45-F25664AD21C9}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = Assembly-CSharp.csproj
+	EndGlobalSection
+EndGlobal
