@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using VRTK;
 
 public class TurretFire : MonoBehaviour {
 
@@ -25,45 +26,33 @@ public class TurretFire : MonoBehaviour {
 	[Range(0.001f, 10.0f)]
 	public float maxFireInterval = 2.0f;
 
-	[Range(0, 10)]
+	private float lastFireTime = 0;
 
-
-	private float lastFireTime = Time.time;
-
-	public GameObject projectileSource;
-	public Transform projectileEmitPoint;
+	public GameObject projectile;
 
 	// Use this for initialization
 	void Start () {
-		
+		GetComponentInParent<VRTK_ControllerEvents>().TriggerHairlineStart += new ControllerInteractionEventHandler(DoOnTriggerStart);
+		GetComponentInParent<VRTK_ControllerEvents>().TriggerHairlineEnd += new ControllerInteractionEventHandler(DoOnTriggerEnd);
 	}
 	
 	// Update is called once per frame
 	void Update () {
+
 		if (isFiring){
+			float timeInterval = Mathf.Lerp(minFireInterval, maxFireInterval, Mathf.Lerp(1.0f, 0.0f, rate));
 
-			float timeInterval = Mathf.Lerp(minFireInterval, maxFireInterval, Mathf.InverseLerp(0.0f, 1.0f, rate));
-			if (Time.time - lastFireTime > timeInterval){
-				// FIRING!
-				lastFireTime = Time.time;
-
-				
-
-				
-
-
-			}
-
+			Debug.Log (timeInterval);
 		}
 	}
 
-	IEnumerable doFire(int numToFire, float fireDelay){
-		while(numToFire > 0){
-			GameObject p = (GameObject)Object.Instantiate(projectileSource, projectileEmitPoint);
-			float projectileScale = Mathf.Lerp(minScale, maxScale, Mathf.InverseLerp(0.0f, 1.0f, size));
+	private void DoOnTriggerStart(object sender, ControllerInteractionEventArgs e)
+	{
+		isFiring = true;
+	}
 
-			yield return new WaitForSeconds(fireDelay);
-		}
-		yield return null;
+	private void DoOnTriggerEnd(object sender, ControllerInteractionEventArgs e)
+	{
+		isFiring = false;
 	}
 }
