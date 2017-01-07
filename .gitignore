@@ -58,3 +58,10 @@ link.xml
 
 
 
+/Library
+/Temp
+/Assets/VSCode.meta
+/Assets/VSCode
+/.vscode
+/Assembly-CSharp.csproj
+/Assembly-CSharp-Editor.csproj
