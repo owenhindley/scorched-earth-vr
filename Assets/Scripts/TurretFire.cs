@@ -42,6 +42,25 @@ public class TurretFire : MonoBehaviour {
 		GetComponentInParent<VRTK_ControllerEvents>().TriggerHairlineStart += new ControllerInteractionEventHandler(DoOnTriggerStart);
 		GetComponentInParent<VRTK_ControllerEvents>().TriggerHairlineEnd += new ControllerInteractionEventHandler(DoOnTriggerEnd);
 	}
+
+	void OnEnable(){
+
+		Players currentPlayer = ScorchGameManager.Instance.currentPlayer;
+		PlayerGunState newGunState;
+		if (currentPlayer == Players.A){
+
+			newGunState = ScorchGameManager.Instance.gunStateA;
+			// TODO - update gun state
+
+		} else {
+
+			newGunState = ScorchGameManager.Instance.gunStateB;
+			// TODO - update gun state
+
+		}
+		
+
+	}
 	
 	// Update is called once per frame
 	void Update () {
