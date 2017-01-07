@@ -1088,7 +1088,7 @@ MonoBehaviour:
   negValue: {fileID: 114653446415130970}
   icon: {fileID: 114368732951074896}
   background: {fileID: 114228472022397236}
-  cardData: {fileID: 11400000, guid: d7f5117ff55fd49139fee8e61416fd1f, type: 2}
+  cardData: {fileID: 0}
 --- !u!114 &114168736160047372
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1802,7 +1802,7 @@ MonoBehaviour:
   negValue: {fileID: 114168736160047372}
   icon: {fileID: 114202043771968614}
   background: {fileID: 114083521070839404}
-  cardData: {fileID: 11400000, guid: d7f5117ff55fd49139fee8e61416fd1f, type: 2}
+  cardData: {fileID: 0}
 --- !u!114 &114258837806244270
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2275,7 +2275,7 @@ MonoBehaviour:
   negValue: {fileID: 114269738342981980}
   icon: {fileID: 114760358279998684}
   background: {fileID: 114787745111309460}
-  cardData: {fileID: 11400000, guid: d7f5117ff55fd49139fee8e61416fd1f, type: 2}
+  cardData: {fileID: 0}
 --- !u!114 &114356859655820920
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3212,7 +3212,7 @@ MonoBehaviour:
   negValue: {fileID: 114217911288166576}
   icon: {fileID: 114182657717485382}
   background: {fileID: 114649357554403488}
-  cardData: {fileID: 11400000, guid: d7f5117ff55fd49139fee8e61416fd1f, type: 2}
+  cardData: {fileID: 0}
 --- !u!114 &114649357554403488
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4102,7 +4102,7 @@ MonoBehaviour:
   negValue: {fileID: 114586429430227340}
   icon: {fileID: 114443482011683640}
   background: {fileID: 114201985571017240}
-  cardData: {fileID: 11400000, guid: d7f5117ff55fd49139fee8e61416fd1f, type: 2}
+  cardData: {fileID: 0}
 --- !u!114 &114903132763873762
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -53,6 +53,11 @@ public class TurretFire : MonoBehaviour {
 				for (int i = 0; i < multi; i++) {
 					var p = Instantiate (projectileSource, projectileEmit.position, projectileEmit.rotation);
 					p.GetComponent<Projectile> ().SetAttributes (Mathf.Lerp(minScale, maxScale, size), aim, guide);
+
+					//Keep first shot straight
+					if (i > 0) {
+						p.GetComponent<Rigidbody> ().velocity = Spread (p.GetComponent<Rigidbody> ().velocity, 20f, (float)multi / 2);
+					}
 				}
 			}
 			
@@ -67,5 +72,16 @@ public class TurretFire : MonoBehaviour {
 	private void DoOnTriggerEnd(object sender, ControllerInteractionEventArgs e)
 	{
 		isFiring = false;
+	}
+
+	private Vector3 Spread(Vector3 aim, float distance, float variance) {
+		aim.Normalize();
+		Vector3 v3;
+		do {
+			v3 = Random.insideUnitSphere;
+		} while (v3 == aim || v3 == -aim);
+		v3 = Vector3.Cross(aim, v3);
+		v3 = v3 * Random.Range(0.0f, variance);
+		return aim * distance + v3;
 	}
 }
