@@ -25,9 +25,13 @@ public class TurretFire : MonoBehaviour {
 	[Range(0.001f, 10.0f)]
 	public float maxFireInterval = 2.0f;
 
+	[Range(0, 10)]
+
+
 	private float lastFireTime = Time.time;
 
-	public GameObject projectile;
+	public GameObject projectileSource;
+	public Transform projectileEmitPoint;
 
 	// Use this for initialization
 	void Start () {
@@ -39,8 +43,27 @@ public class TurretFire : MonoBehaviour {
 		if (isFiring){
 
 			float timeInterval = Mathf.Lerp(minFireInterval, maxFireInterval, Mathf.InverseLerp(0.0f, 1.0f, rate));
+			if (Time.time - lastFireTime > timeInterval){
+				// FIRING!
+				lastFireTime = Time.time;
 
+				float 
+
+				
+
+
+			}
 
 		}
+	}
+
+	IEnumerable doFire(int numToFire, float fireDelay){
+		while(numToFire > 0){
+			GameObject p = (GameObject)Object.Instantiate(projectileSource, projectileEmitPoint);
+			float projectileScale = Mathf.Lerp(minScale, maxScale, Mathf.InverseLerp(0.0f, 1.0f, size));
+
+			yield return new WaitForSeconds(fireDelay);
+		}
+		yield return null;
 	}
 }
