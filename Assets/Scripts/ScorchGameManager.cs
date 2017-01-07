@@ -20,6 +20,7 @@ public enum GameStates
 	Win
 };
 
+[Serializable]
 public struct PlayerGunState
 {
 	public float Aim;
