@@ -107,13 +107,14 @@ GameObject:
   - component: {fileID: 223449204550946636}
   - component: {fileID: 114444632086799910}
   - component: {fileID: 114922781396568564}
+  - component: {fileID: 114417290086916846}
   m_Layer: 5
   m_Name: CardPrefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1906576164787872
 GameObject:
   m_ObjectHideFlags: 1
@@ -513,6 +514,25 @@ MonoBehaviour:
   - {fileID: 0}
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &114417290086916846
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1802097353993778}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 609b668490b7046779b3729cb54074da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  title: {fileID: 114758292754226162}
+  posType: {fileID: 114141270835819600}
+  negType: {fileID: 114076363321023788}
+  posValue: {fileID: 114091531816883756}
+  negValue: {fileID: 114806531270290652}
+  icon: {fileID: 114089043626735496}
+  background: {fileID: 114460446671544370}
+  cardData: {fileID: 0}
 --- !u!114 &114444632086799910
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -606,8 +626,8 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 15.2
-  m_fontSizeBase: 15.2
+  m_fontSize: 11.63
+  m_fontSizeBase: 11.63
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
