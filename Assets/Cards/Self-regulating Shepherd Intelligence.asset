@@ -9,10 +9,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d3715395491d9478d9f2d36954435dcb, type: 3}
-  m_Name: Guidance
+  m_Name: Self-regulating Shepherd Intelligence
   m_EditorClassIdentifier: 
   cardName: Self-regulating Shepherd Intelligence
   positiveType: 4
   positiveValue: 3
   negativeType: 3
   negativeValue: 3
+  color: {r: 0, g: 0, b: 0, a: 1}
+  img: {fileID: 0}
