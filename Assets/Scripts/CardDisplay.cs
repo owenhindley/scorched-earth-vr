@@ -30,6 +30,8 @@ public class CardDisplay : MonoBehaviour {
 
 	void updateView(){
 
+		if (cardData == null) return;
+
 		title.SetText(cardData.name);
 		posType.SetText( cardData.positiveType.ToString());
 		negType.SetText( cardData.negativeType.ToString());

@@ -32,7 +32,13 @@ public class ChooseCardView : MonoBehaviour {
 		}
 
 		for (var i=0; i < cards.Count; i++){
-			cards[i].SetCard(newCards[i]);
+			if (newCards.Count > i){
+				cards[i].gameObject.SetActive(true);
+				cards[i].SetCard(newCards[i]);
+			} else {
+				cards[i].gameObject.SetActive(false);
+			}
+			
 		}
 
 	}
