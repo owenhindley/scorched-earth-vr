@@ -9,7 +9,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d3715395491d9478d9f2d36954435dcb, type: 3}
-  m_Name: Projectile Breeding Shepherd Antiregulator
+  m_Name: Antishepherd Epoch Compressor
   m_EditorClassIdentifier: 
   cardName: Antishepherd Epoch Compressor
   positiveType: 2
