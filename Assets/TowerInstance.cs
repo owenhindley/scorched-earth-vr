@@ -15,6 +15,8 @@ public class TowerInstance : MonoBehaviour {
 		if (col.collider.tag.Contains("projectile")){
 			// we were hit
 			hit();
+
+			
 		}
 	}
 	

@@ -21,4 +21,12 @@ public class Projectile : MonoBehaviour {
 		GetComponent<Rigidbody> ().isKinematic = false;
 		GetComponent<Rigidbody> ().velocity += transform.up * (baseSpeed - ((baseSpeed / 2) * size));
 	}
+
+	void OnCollisionEnter(Collision col){
+		if (col.collider.tag.Contains("ProjectileDestroyer")){
+			// boom
+			Debug.Log("destroyed projectile");
+			Object.Destroy(gameObject);
+		}
+	}
 }
