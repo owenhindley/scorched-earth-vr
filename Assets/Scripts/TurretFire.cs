@@ -50,21 +50,19 @@ public class TurretFire : MonoBehaviour {
 		if (currentPlayer == Players.A) {
 
 			newGunState = ScorchGameManager.Instance.gunStateA;
-			// TODO - update gun state
 			size = Mathf.InverseLerp (-10f, 10f, newGunState.Size);
 			aim = Mathf.InverseLerp (-10f, 10f, newGunState.Aim);
 			rate = Mathf.InverseLerp (-10f, 10f, newGunState.Rate);
-			multi = newGunState.Multi;
+			multi = Mathf.Clamp(newGunState.Multi, 1, 500);
 			guide = Mathf.InverseLerp (-10f, 10f, newGunState.Guidance);
 
 		} else {
 
 			newGunState = ScorchGameManager.Instance.gunStateB;
-			// TODO - update gun state
 			size = Mathf.InverseLerp (-10f, 10f, newGunState.Size);
 			aim = Mathf.InverseLerp (-10f, 10f, newGunState.Aim);
 			rate = Mathf.InverseLerp (-10f, 10f, newGunState.Rate);
-			multi = newGunState.Multi;
+			multi = Mathf.Clamp(newGunState.Multi, 1, 500);
 			guide = Mathf.InverseLerp (-10f, 10f, newGunState.Guidance);
 		}
 	}
@@ -73,7 +71,7 @@ public class TurretFire : MonoBehaviour {
 	void Update () {
 
 		if (isFiring){
-			float fireTimeInterval = Mathf.Lerp(minFireInterval, maxFireInterval, Mathf.Lerp(1.0f, 0.0f, rate));
+			float fireTimeInterval = Mathf.Lerp(minFireInterval, maxFireInterval, Mathf.Lerp(1.0f, 0.0f, rate * 1.5f));
 
 			if (Time.time - lastFireTime > fireTimeInterval) {
 				//Firing
