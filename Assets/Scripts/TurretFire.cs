@@ -49,19 +49,26 @@ public class TurretFire : MonoBehaviour {
 
 		Players currentPlayer = ScorchGameManager.Instance.currentPlayer;
 		PlayerGunState newGunState;
-		if (currentPlayer == Players.A){
+		if (currentPlayer == Players.A) {
 
 			newGunState = ScorchGameManager.Instance.gunStateA;
 			// TODO - update gun state
+			size = Mathf.InverseLerp (-10f, 10f, newGunState.Size);
+			aim = Mathf.InverseLerp (-10f, 10f, newGunState.Aim);
+			rate = Mathf.InverseLerp (-10f, 10f, newGunState.Rate);
+			multi = newGunState.Multi;
+			guide = Mathf.InverseLerp (-10f, 10f, newGunState.Guidance);
 
 		} else {
 
 			newGunState = ScorchGameManager.Instance.gunStateB;
 			// TODO - update gun state
-
+			size = Mathf.InverseLerp (-10f, 10f, newGunState.Size);
+			aim = Mathf.InverseLerp (-10f, 10f, newGunState.Aim);
+			rate = Mathf.InverseLerp (-10f, 10f, newGunState.Rate);
+			multi = newGunState.Multi;
+			guide = Mathf.InverseLerp (-10f, 10f, newGunState.Guidance);
 		}
-		
-
 	}
 	
 	// Update is called once per frame
