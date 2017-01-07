@@ -30,6 +30,10 @@ public class TurretFire : MonoBehaviour {
 
 	private float lastFireTime = 0;
 
+	//Aim shake
+	[Range(0.0f, 5f)]
+	public float shakeAmplitude;
+
 	public Transform projectileEmit;
 	public GameObject projectileSource;
 
@@ -62,6 +66,10 @@ public class TurretFire : MonoBehaviour {
 			}
 		}
 
+		//Aim shake
+		var randCircle = Random.insideUnitCircle;
+		randCircle = Vector2.Scale (randCircle, new Vector2 (Mathf.Lerp(shakeAmplitude, 0, aim), Mathf.Lerp(shakeAmplitude, 0, aim)));
+		transform.localEulerAngles = new Vector3 (transform.localEulerAngles.x + randCircle.x, transform.localEulerAngles.y + randCircle.y, transform.localEulerAngles.z);
 	}
 
 	private void DoOnTriggerStart(object sender, ControllerInteractionEventArgs e)
