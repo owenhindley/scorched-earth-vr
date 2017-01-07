@@ -215,6 +215,10 @@ public class ScorchGameManager : MonoBehaviour {
 
 		 cardView.gameObject.SetActive(false);
 
+		 if (currentPlayer == Players.A){
+			 currentPlayer = Players.B;
+		 }
+
 	 }
 
 
