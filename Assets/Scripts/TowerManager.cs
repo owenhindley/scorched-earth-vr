@@ -36,6 +36,7 @@ public class TowerManager : MonoBehaviour {
 
 		}
 
+
 		towerNumberChanged(numberAliveTowers);
 		
 	}
