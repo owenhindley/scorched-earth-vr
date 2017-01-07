@@ -42,6 +42,7 @@ public class TowerManager : MonoBehaviour {
 	}
 
 	void OnTowerHit(TowerInstance ti){
+		Debug.Log("TOWER HIT");
 		towers.Remove(ti);
 		ti.hit -= OnTowerHit;
 		numberAliveTowers--;

@@ -4,6 +4,7 @@ using UnityEngine;
 using MonsterLove.StateMachine;
 using System;
 using DG.Tweening;
+using TMPro;
 
 public enum Players
 {
@@ -13,7 +14,7 @@ public enum Players
 
 public enum GameStates
 {
-	Idle,
+	Intro,
 	Ready,
 	Shooting,
 	ChooseCards,
@@ -31,9 +32,13 @@ public struct PlayerGunState
 	
 }
 
+
 public class ScorchGameManager : MonoBehaviour {
 
 	private static ScorchGameManager _instance; //Singleton that only lives for the duration of the scene
+
+	public float ShootingRoundDuration = 30.0f;
+	public float IntervalReady = 5.0f;
 
 	public GameStates currentState;
 
@@ -47,8 +52,17 @@ public class ScorchGameManager : MonoBehaviour {
 	public GameObject desktopCamera;
 	public GameObject viveCameraRig;
 
+	public TextMeshPro desktopInstruction;
+
+	public Transform chooseCardCameraPosition;
+	
+	public Scoreboard scoreboard;
+
 	public GameObject spawnA;
 	public GameObject spawnB;
+
+	public GameObject audienceA;
+	public GameObject audienceB;
 
 	public TowerManager playerATowers;
 	public TowerManager playerBTowers;
@@ -56,9 +70,9 @@ public class ScorchGameManager : MonoBehaviour {
 	public PlayerGunState gunStateA;
 	public PlayerGunState gunStateB;
 
-	public Players currentPlayer = Players.A;
+	public Players currentPlayer = Players.B;
 
-	private int playerRoundScore = 0;
+	public int playerRoundScore = 0;
 
 	[InspectorButton("GotoCards")] public bool gotoCards = false;
 	[InspectorButton("GotoReady")] public bool gotoReady = false;
@@ -83,7 +97,7 @@ public class ScorchGameManager : MonoBehaviour {
 		sm = StateMachine<GameStates>.Initialize(this);
 
 		sm.Changed += OnStateChanged;
-
+		sm.ChangeState(GameStates.Intro);
 		cardView.CardSelected += OnCardChosen;
 		cardView.gameObject.SetActive(false);
 	}
@@ -102,44 +116,79 @@ public class ScorchGameManager : MonoBehaviour {
     }
 
 	// IDLE
-	 void Idle_Enter(){
+	 void Intro_Enter(){
+
+
+		 scoreboard.gameObject.SetActive(false);
 
 		// desktop camera - randomly above landscape
 		// vr camera - randomly above landscape
 
 	 }
-	 void Idle_Update(){}
-	 void Idle_Exit(){}
+	 void Intro_Update(){
+
+		 if (Input.GetKeyDown(KeyCode.Return)){
+			 sm.ChangeState(GameStates.Ready);
+		 }
+
+
+	 }
+	 void Intro_Exit(){
+
+		 desktopInstruction.gameObject.SetActive(false);
+
+	 }
 
 	 // READY
 	 void Ready_Enter(){
 
-		 // TODO - put VR camera in correct base
+		 desktopInstruction.gameObject.SetActive(true);
+		 desktopInstruction.SetText("Ready");
+
+		 scoreboard.gameObject.SetActive(true);
+		 
+		 // switch players
+		 if (currentPlayer == Players.A){
+			 currentPlayer = Players.B;
+		 } else {
+			 currentPlayer = Players.A;
+		 }
+
+		 // TODO - put cameras in correct base
 		 if (currentPlayer == Players.A){
 			 viveCameraRig.transform.position = spawnA.transform.position;
 			 viveCameraRig.transform.rotation = spawnA.transform.rotation;
+			 desktopCamera.transform.position = audienceA.transform.position;
+			 desktopCamera.transform.LookAt(spawnB.transform.position);
 		 }
 		 else {
 			 viveCameraRig.transform.position = spawnB.transform.position;
 			 viveCameraRig.transform.rotation = spawnB.transform.rotation;
+			 desktopCamera.transform.position = audienceB.transform.position;
+			 desktopCamera.transform.LookAt(spawnA.transform.position);
 		 }
 
-		 // desktop camera show Vive
 		 
 		 // show countdown
 
 		 // reset round scores (for checking later)
 		 playerRoundScore = 0;
 
-		 // change to shooting state
-		 DOVirtual.DelayedCall(5.0f, ()=>{
+		// countdown
+		 DOVirtual.Float(IntervalReady, 0.0f, IntervalReady, (float val)=>{
+
+			 scoreboard.setReady((int)val);
+
+		 }).OnComplete(()=>{
+
 			 sm.ChangeState(GameStates.Shooting);
-		 });
+
+		 }).SetEase(Ease.Linear);
 	 }
 	 void Ready_Update(){}
 	 void Ready_Exit(){
 
-
+		 desktopInstruction.gameObject.SetActive(false);
 
 	 }
 
@@ -148,6 +197,7 @@ public class ScorchGameManager : MonoBehaviour {
 
 		 // enable gun
 		 gun.SetActive(true);
+		 
 
 		 // enable tower checking
 		 if (currentPlayer == Players.A){
@@ -157,6 +207,17 @@ public class ScorchGameManager : MonoBehaviour {
 			 playerATowers.towerNumberChanged += OnTowerNumberChanged;
 			 playerBTowers.towerNumberChanged -= OnTowerNumberChanged;
 		 }
+
+		 // countdown
+		 DOVirtual.Float(ShootingRoundDuration, 0.0f, ShootingRoundDuration, (float val)=>{
+
+			 scoreboard.setTime(0, (int)val);
+
+		 }).OnComplete(()=>{
+
+			 sm.ChangeState(GameStates.ChooseCards);
+
+		 }).SetEase(Ease.Linear);
 
 	 }
 	 void Shooting_Update(){
@@ -187,14 +248,19 @@ public class ScorchGameManager : MonoBehaviour {
 		playerBTowers.towerNumberChanged -= OnTowerNumberChanged;
 		
 		DOVirtual.DelayedCall(2.0f, ()=>{
-
-			sm.ChangeState(GameStates.ChooseCards);
+			if (currentState == GameStates.Shooting){
+				sm.ChangeState(GameStates.ChooseCards);
+			} else {
+				// we've entered the win state
+			}
+			
 
 		});
 
 	 }
 
 	 void OnTowerNumberChanged(int number){
+		 Debug.Log("tower number changed");
 		 playerRoundScore++;
 		 if (number == 0){
 			 sm.ChangeState(GameStates.Win);
@@ -204,7 +270,12 @@ public class ScorchGameManager : MonoBehaviour {
 	 // CHOOSE CARDS
 	 void ChooseCards_Enter(){
 
+		 // hide scoreboard
+		 scoreboard.gameObject.SetActive(false);
+
 		 // desktop camera - show cards view
+		  desktopCamera.transform.position = chooseCardCameraPosition.position;
+		 desktopCamera.transform.rotation = chooseCardCameraPosition.rotation;
 
 		 // vr camera - show above battlefield
 
@@ -213,15 +284,7 @@ public class ScorchGameManager : MonoBehaviour {
 	 }
 	 void ChooseCards_Update(){}
 	 void ChooseCards_Exit(){
-
 		 cardView.gameObject.SetActive(false);
-
-		 if (currentPlayer == Players.A){
-			 currentPlayer = Players.B;
-		 } else {
-			 currentPlayer = Players.A;
-		 }
-
 	 }
 
 
@@ -270,6 +333,21 @@ public class ScorchGameManager : MonoBehaviour {
 
 	 // WINNING
 	 void Win_Enter(){
+
+		  // hide scoreboard
+		 scoreboard.gameObject.SetActive(false);
+
+		 // desktop camera - show cards view
+		  desktopCamera.transform.position = chooseCardCameraPosition.position;
+		 desktopCamera.transform.rotation = chooseCardCameraPosition.rotation;
+
+		  desktopInstruction.gameObject.SetActive(true);
+		  if (playerATowers.towers.Count > playerBTowers.towers.Count){
+			  desktopInstruction.SetText("Player A Wins!");
+		  } else {
+			desktopInstruction.SetText("Player B Wins!");
+		  }
+		 
 
 	 }
 	 void Win_Update(){
