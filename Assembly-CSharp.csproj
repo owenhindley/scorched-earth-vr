@@ -46,6 +46,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Scripts\CardDisplay.cs" />
+     <Compile Include="Assets\Scripts\CardSO.cs" />
+     <Compile Include="Assets\Scripts\Projectile.cs" />
      <Compile Include="Assets\Scripts\TurretAim.cs" />
      <Compile Include="Assets\Scripts\TurretFire.cs" />
      <Compile Include="Assets\SteamVR\Plugins\openvr_api.cs" />
