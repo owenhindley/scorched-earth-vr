@@ -473,7 +473,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1863001568976610}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 2.5, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
   - {fileID: 4999515364094950}
@@ -505,7 +505,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1037143316534780}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalPosition: {x: -0, y: -0.68, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4515405076902326}
@@ -628,7 +628,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1082084362337882}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 2.5, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
   - {fileID: 4042123501088652}
@@ -851,7 +851,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1148865270410082}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalPosition: {x: -0, y: -0.76, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4019338243046038}
@@ -1407,6 +1407,7 @@ MonoBehaviour:
   towerPrefab: {fileID: 1391490143019746}
   towers: []
   numberTowers: 5
+  numberAliveTowers: 5
   radius: 20
   angleSpread: 0.883125
 --- !u!114 &114210735564786672
@@ -1420,6 +1421,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66d26998ff5cb4a5c9abb49a0efdd36f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  index: 0
 --- !u!114 &114629931702449814
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1434,6 +1436,7 @@ MonoBehaviour:
   towerPrefab: {fileID: 1279475935190808}
   towers: []
   numberTowers: 5
+  numberAliveTowers: 5
   radius: 20
   angleSpread: 0.883125
 --- !u!114 &114892246607774212
@@ -1447,6 +1450,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66d26998ff5cb4a5c9abb49a0efdd36f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  index: 0
 --- !u!136 &136155735211276526
 CapsuleCollider:
   m_ObjectHideFlags: 1
