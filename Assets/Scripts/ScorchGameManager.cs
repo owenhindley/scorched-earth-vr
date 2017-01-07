@@ -277,7 +277,6 @@ public class ScorchGameManager : MonoBehaviour {
 	 void Win_Exit(){
 
 	 }
-
 	 
 	
 	// Update is called once per frame
