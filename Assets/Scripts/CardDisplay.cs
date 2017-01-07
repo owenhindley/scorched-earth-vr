@@ -7,11 +7,11 @@ using TMPro;
 
 public class CardDisplay : MonoBehaviour {
 
-	public TextMeshPro title;
-	public TextMeshPro posType;
-	public TextMeshPro negType;
-	public TextMeshPro posValue;
-	public TextMeshPro negValue;
+	public TextMeshProUGUI title;
+	public TextMeshProUGUI posType;
+	public TextMeshProUGUI negType;
+	public TextMeshProUGUI posValue;
+	public TextMeshProUGUI negValue;
 	public Image icon;
 	public Image background;
 
@@ -24,6 +24,12 @@ public class CardDisplay : MonoBehaviour {
 
 	void OnEnable(){
 
+		updateView();
+
+	}
+
+	void updateView(){
+
 		title.SetText(cardData.name);
 		posType.SetText( cardData.positiveType.ToString());
 		negType.SetText( cardData.negativeType.ToString());
@@ -31,7 +37,21 @@ public class CardDisplay : MonoBehaviour {
 		negValue.SetText( "-" + cardData.negativeValue);
 
 		icon.sprite = cardData.img;
-		background.color = cardData.color;
+		
+		Color c = cardData.color;
+		c.a = 1.0f;
+		background.color = c;
+
+	}
+
+	public void SetCard(CardSO newData){
+		if (newData){
+			gameObject.SetActive(true);
+			cardData = newData;
+			updateView();
+		} else{
+			gameObject.SetActive(false);
+		}
 
 	}
 	
