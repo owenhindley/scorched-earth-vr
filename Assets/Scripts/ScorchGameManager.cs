@@ -4,6 +4,7 @@ using UnityEngine;
 using MonsterLove.StateMachine;
 using System;
 using DG.Tweening;
+using TMPro;
 
 public enum Players
 {
@@ -13,7 +14,7 @@ public enum Players
 
 public enum GameStates
 {
-	Idle,
+	Intro,
 	Ready,
 	Shooting,
 	ChooseCards,
@@ -31,6 +32,7 @@ public struct PlayerGunState
 	
 }
 
+
 public class ScorchGameManager : MonoBehaviour {
 
 	private static ScorchGameManager _instance; //Singleton that only lives for the duration of the scene
@@ -47,8 +49,16 @@ public class ScorchGameManager : MonoBehaviour {
 	public GameObject desktopCamera;
 	public GameObject viveCameraRig;
 
+	public TextMeshPro desktopInstruction;
+
+	public Transform chooseCardCameraPosition;
+	
+
 	public GameObject spawnA;
 	public GameObject spawnB;
+
+	public GameObject audienceA;
+	public GameObject audienceB;
 
 	public TowerManager playerATowers;
 	public TowerManager playerBTowers;
@@ -56,7 +66,7 @@ public class ScorchGameManager : MonoBehaviour {
 	public PlayerGunState gunStateA;
 	public PlayerGunState gunStateB;
 
-	public Players currentPlayer = Players.A;
+	public Players currentPlayer = Players.B;
 
 	private int playerRoundScore = 0;
 
@@ -83,7 +93,7 @@ public class ScorchGameManager : MonoBehaviour {
 		sm = StateMachine<GameStates>.Initialize(this);
 
 		sm.Changed += OnStateChanged;
-
+		sm.ChangeState(GameStates.Intro);
 		cardView.CardSelected += OnCardChosen;
 		cardView.gameObject.SetActive(false);
 	}
@@ -102,29 +112,54 @@ public class ScorchGameManager : MonoBehaviour {
     }
 
 	// IDLE
-	 void Idle_Enter(){
+	 void Intro_Enter(){
 
 		// desktop camera - randomly above landscape
 		// vr camera - randomly above landscape
 
 	 }
-	 void Idle_Update(){}
-	 void Idle_Exit(){}
+	 void Intro_Update(){
+
+		 if (Input.GetKeyDown(KeyCode.Return)){
+			 sm.ChangeState(GameStates.Ready);
+		 }
+
+
+	 }
+	 void Intro_Exit(){
+
+		 desktopInstruction.gameObject.SetActive(false);
+
+	 }
 
 	 // READY
 	 void Ready_Enter(){
 
-		 // TODO - put VR camera in correct base
+		 desktopInstruction.gameObject.SetActive(true);
+		 desktopInstruction.SetText("Ready");
+
+		 
+		 // switch players
+		 if (currentPlayer == Players.A){
+			 currentPlayer = Players.B;
+		 } else {
+			 currentPlayer = Players.A;
+		 }
+
+		 // TODO - put cameras in correct base
 		 if (currentPlayer == Players.A){
 			 viveCameraRig.transform.position = spawnA.transform.position;
 			 viveCameraRig.transform.rotation = spawnA.transform.rotation;
+			 desktopCamera.transform.position = audienceA.transform.position;
+			 desktopCamera.transform.LookAt(spawnB.transform.position);
 		 }
 		 else {
 			 viveCameraRig.transform.position = spawnB.transform.position;
 			 viveCameraRig.transform.rotation = spawnB.transform.rotation;
+			 desktopCamera.transform.position = audienceB.transform.position;
+			 desktopCamera.transform.LookAt(spawnA.transform.position);
 		 }
 
-		 // desktop camera show Vive
 		 
 		 // show countdown
 
@@ -139,7 +174,7 @@ public class ScorchGameManager : MonoBehaviour {
 	 void Ready_Update(){}
 	 void Ready_Exit(){
 
-
+		 desktopInstruction.gameObject.SetActive(false);
 
 	 }
 
@@ -148,6 +183,7 @@ public class ScorchGameManager : MonoBehaviour {
 
 		 // enable gun
 		 gun.SetActive(true);
+		 
 
 		 // enable tower checking
 		 if (currentPlayer == Players.A){
@@ -205,6 +241,8 @@ public class ScorchGameManager : MonoBehaviour {
 	 void ChooseCards_Enter(){
 
 		 // desktop camera - show cards view
+		  desktopCamera.transform.position = chooseCardCameraPosition.position;
+		 desktopCamera.transform.rotation = chooseCardCameraPosition.rotation;
 
 		 // vr camera - show above battlefield
 
@@ -213,15 +251,7 @@ public class ScorchGameManager : MonoBehaviour {
 	 }
 	 void ChooseCards_Update(){}
 	 void ChooseCards_Exit(){
-
 		 cardView.gameObject.SetActive(false);
-
-		 if (currentPlayer == Players.A){
-			 currentPlayer = Players.B;
-		 } else {
-			 currentPlayer = Players.A;
-		 }
-
 	 }
 
 

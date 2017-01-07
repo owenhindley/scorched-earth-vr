@@ -39,8 +39,10 @@ public class TurretFire : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		/*
 		GetComponentInParent<VRTK_ControllerEvents>().TriggerHairlineStart += new ControllerInteractionEventHandler(DoOnTriggerStart);
 		GetComponentInParent<VRTK_ControllerEvents>().TriggerHairlineEnd += new ControllerInteractionEventHandler(DoOnTriggerEnd);
+		*/
 	}
 
 	void OnEnable(){
