@@ -5,7 +5,7 @@ using System;
 
 public class TowerManager : MonoBehaviour {
 
-	public Action<int> numberTowers;
+	public Action<int> towerNumberChanged;
 
 	public GameObject towerPrefab;
 
@@ -21,8 +21,12 @@ public class TowerManager : MonoBehaviour {
 
 		// create towers
 		float angleInc = angleSpread / numberTowers;
-		for (int i=-numberTowers/2; i < numberTowers/2; i++){
-			// float newX = 
+		for (int i=-numberTowers/2; i <= numberTowers/2; i++){
+			float newX = -radius * Mathf.Cos(-i * angleInc);
+			float newZ = -radius * Mathf.Sin(-i * angleInc);
+			GameObject t = (GameObject)UnityEngine.Object.Instantiate(towerPrefab, this.transform);
+			t.transform.localPosition = new Vector3(newX, 0, newZ);
+			t.SetActive(true);
 
 		}
 		
