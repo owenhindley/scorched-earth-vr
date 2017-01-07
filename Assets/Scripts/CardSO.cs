@@ -29,5 +29,6 @@ public enum CardEffectType {
 	Aim = 0,
 	Size = 1,
 	Rate = 2,
-	Multi = 3 
+	Multi = 3,
+	Guidance = 4
 }
