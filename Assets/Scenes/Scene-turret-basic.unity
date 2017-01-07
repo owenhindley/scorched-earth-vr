@@ -252,7 +252,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1580343718}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 2, z: 9.2}
+  m_LocalPosition: {x: 1.46, y: 3.79, z: 9.2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -417,6 +417,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2035120954}
   - component: {fileID: 2035120955}
+  - component: {fileID: 2035120956}
   m_Layer: 0
   m_Name: BarrelContainer
   m_TagString: Untagged
@@ -450,3 +451,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   followTarget: {fileID: 1580343719}
+--- !u!114 &2035120956
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2035120953}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb3f104be1f12427cabec36bd4e5dd1b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  size: 0
+  aim: 0
+  rate: 0
+  multi: 0
+  isFiring: 0
+  minScale: 0.2
+  maxScale: 1
+  minFireInterval: 0.2
+  maxFireInterval: 2
+  projectileSource: {fileID: 462629410}
+  projectileEmitPoint: {fileID: 500009016}
