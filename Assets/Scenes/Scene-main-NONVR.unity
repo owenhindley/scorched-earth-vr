@@ -2344,6 +2344,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 1181069261798562, guid: 47ece1686f46e4280b9a641acaa27205, type: 2}
+      propertyPath: m_TagString
+      value: Floor
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 47ece1686f46e4280b9a641acaa27205, type: 2}
   m_IsPrefabParent: 0
@@ -2651,7 +2655,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ShootingRoundDuration: 30
-  IntervalReady: 5
+  IntervalReady: 1
   currentState: 0
   cardView: {fileID: 254892103}
   availableCards:
@@ -2687,6 +2691,7 @@ MonoBehaviour:
     Multi: 10
     Guidance: 10
   currentPlayer: 1
+  playerRoundScore: 0
   gotoCards: 0
   gotoReady: 0
   gotoShooting: 0

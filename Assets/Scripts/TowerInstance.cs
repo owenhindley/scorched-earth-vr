@@ -13,7 +13,7 @@ public class TowerInstance : MonoBehaviour {
 	}
 
 	void OnCollisionEnter(Collision col){
-		if (col.collider.tag.Contains("Projectile")){
+		if (col.collider.tag != "Floor"){
 			// we were hit
 			hit.Dispatch(this);
 			Debug.Log("tower hit!");

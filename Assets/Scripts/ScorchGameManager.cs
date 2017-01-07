@@ -248,8 +248,12 @@ public class ScorchGameManager : MonoBehaviour {
 		playerBTowers.towerNumberChanged -= OnTowerNumberChanged;
 		
 		DOVirtual.DelayedCall(2.0f, ()=>{
-
-			sm.ChangeState(GameStates.ChooseCards);
+			if (currentState == GameStates.Shooting){
+				sm.ChangeState(GameStates.ChooseCards);
+			} else {
+				// we've entered the win state
+			}
+			
 
 		});
 
@@ -329,6 +333,21 @@ public class ScorchGameManager : MonoBehaviour {
 
 	 // WINNING
 	 void Win_Enter(){
+
+		  // hide scoreboard
+		 scoreboard.gameObject.SetActive(false);
+
+		 // desktop camera - show cards view
+		  desktopCamera.transform.position = chooseCardCameraPosition.position;
+		 desktopCamera.transform.rotation = chooseCardCameraPosition.rotation;
+
+		  desktopInstruction.gameObject.SetActive(true);
+		  if (playerATowers.towers.Count > playerBTowers.towers.Count){
+			  desktopInstruction.SetText("Player A Wins!");
+		  } else {
+			desktopInstruction.SetText("Player B Wins!");
+		  }
+		 
 
 	 }
 	 void Win_Update(){
