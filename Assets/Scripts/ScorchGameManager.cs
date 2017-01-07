@@ -218,6 +218,8 @@ public class ScorchGameManager : MonoBehaviour {
 
 		 if (currentPlayer == Players.A){
 			 currentPlayer = Players.B;
+		 } else {
+			 currentPlayer = Players.A;
 		 }
 
 	 }
