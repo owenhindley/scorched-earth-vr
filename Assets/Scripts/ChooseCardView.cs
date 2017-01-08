@@ -50,16 +50,19 @@ public class ChooseCardView : MonoBehaviour {
 			cardSelectedIndex--;
 			cardSelectedIndex = Mathf.Clamp(cardSelectedIndex, 0, cards.Count);
 			SelectCard(cardSelectedIndex);
+			ScorchAudio.PlayMenuMove();
 		}
 
 		if (Input.GetKeyDown(KeyCode.RightArrow)){
 			cardSelectedIndex++;
 			cardSelectedIndex = Mathf.Clamp(cardSelectedIndex, 0, cards.Count);
 			SelectCard(cardSelectedIndex);
+			ScorchAudio.PlayMenuMove();
 		}
 
 		if (Input.GetKeyDown(KeyCode.Return)){
 			CardSelected.Dispatch(cards[cardSelectedIndex].cardData);
+			ScorchAudio.PlayMenuSelect();
 		}
 		
 	}

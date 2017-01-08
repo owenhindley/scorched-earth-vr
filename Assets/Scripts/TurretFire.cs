@@ -101,6 +101,8 @@ public class TurretFire : MonoBehaviour {
 						if (i > 0) {
 							p.GetComponent<Rigidbody> ().velocity = Spread (p.GetComponent<Rigidbody> ().velocity, Mathf.Lerp(20f, 12f, size), (float)multi / 2);
 						}
+
+						ScorchAudio.PlayFire();
 					}
 
 				}

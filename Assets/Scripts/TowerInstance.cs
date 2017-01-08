@@ -17,6 +17,7 @@ public class TowerInstance : MonoBehaviour {
 			// we were hit
 			hit.Dispatch(this);
 			Debug.Log("tower hit!");
+			ScorchAudio.PlayImpact();
 			
 		}
 	}
