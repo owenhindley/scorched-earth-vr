@@ -171,7 +171,6 @@ public class ScorchGameManager : MonoBehaviour {
 			 desktopCamera.transform.position = audienceB.transform.position;
 			 desktopCamera.transform.LookAt(spawnA.transform.position);
 		 }
-
 		 
 		 // show countdown
 

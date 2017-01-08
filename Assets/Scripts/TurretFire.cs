@@ -36,6 +36,10 @@ public class TurretFire : MonoBehaviour {
 	//[Range(0.0f, 5f)]
 	//public float shakeAmplitude;
 
+    private Quaternion ogRotation;
+    public Material colorA;
+    public Material colorB;
+
 	public Transform projectileEmit;
 	public GameObject projectileSource;
 
@@ -51,7 +55,7 @@ public class TurretFire : MonoBehaviour {
 		
 		GetComponentInParent<VRTK_ControllerEvents>().TriggerHairlineStart += new ControllerInteractionEventHandler(DoOnTriggerStart);
 		GetComponentInParent<VRTK_ControllerEvents>().TriggerHairlineEnd += new ControllerInteractionEventHandler(DoOnTriggerEnd);
-
+	    ogRotation = transform.rotation;
 	}
 
 	void OnEnable(){
@@ -76,6 +80,9 @@ public class TurretFire : MonoBehaviour {
 			multi = Mathf.Clamp(newGunState.Multi, 1, 500);
 			guide = Mathf.InverseLerp (-10f, 10f, newGunState.Guidance);
 		}
+
+	    //Reset rotation
+	    transform.rotation = ogRotation;
 	}
 	
 	// Update is called once per frame
