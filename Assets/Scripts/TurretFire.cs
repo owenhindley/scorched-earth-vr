@@ -45,7 +45,8 @@ public class TurretFire : MonoBehaviour {
 
     private float wiggleIndex = 0.0f;
 
-    // Use this for initialization
+	public GameObject fireReadyIndicator;
+
 	void Start () {
 		
 		GetComponentInParent<VRTK_ControllerEvents>().TriggerHairlineStart += new ControllerInteractionEventHandler(DoOnTriggerStart);
@@ -80,25 +81,36 @@ public class TurretFire : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		if (isFiring){
 			float fireTimeInterval = Mathf.Lerp(minFireInterval, maxFireInterval, Mathf.Lerp(1.0f, 0.0f, rate * 2f));
 
 			if (Time.time - lastFireTime > fireTimeInterval) {
-				//Firing
-				lastFireTime = Time.time;
 
-				Debug.Log ("Fire!");
-				for (int i = 0; i < multi; i++) {
-					var p = Instantiate (projectileSource, projectileEmit.position, projectileEmit.rotation);
-					p.GetComponent<Projectile> ().SetAttributes (Mathf.Lerp(minScale, maxScale, size), aim, guide);
+				fireReadyIndicator.SetActive(true);
 
-					//Keep first shot straight
-					if (i > 0) {
-						p.GetComponent<Rigidbody> ().velocity = Spread (p.GetComponent<Rigidbody> ().velocity, Mathf.Lerp(20f, 12f, size), (float)multi / 2);
+				if (isFiring){
+
+					//Firing
+					lastFireTime = Time.time;
+
+					Debug.Log ("Fire!");
+					for (int i = 0; i < multi; i++) {
+						var p = Instantiate (projectileSource, projectileEmit.position, projectileEmit.rotation);
+						p.GetComponent<Projectile> ().SetAttributes (Mathf.Lerp(minScale, maxScale, size), aim, guide);
+
+						//Keep first shot straight
+						if (i > 0) {
+							p.GetComponent<Rigidbody> ().velocity = Spread (p.GetComponent<Rigidbody> ().velocity, Mathf.Lerp(20f, 12f, size), (float)multi / 2);
+						}
 					}
+
+				}
+
+			} else {
+				if (fireReadyIndicator != null){
+					fireReadyIndicator.SetActive(false);
 				}
 			}
-		}
+		
 
 		//Aim shake
 		/*var randCircle = Random.insideUnitCircle;
