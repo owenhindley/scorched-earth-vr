@@ -1,7 +1,9 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using VRTK;
+using Random = UnityEngine.Random;
 
 public class TurretFire : MonoBehaviour {
 
@@ -86,7 +88,7 @@ public class TurretFire : MonoBehaviour {
 
 					//Keep first shot straight
 					if (i > 0) {
-						p.GetComponent<Rigidbody> ().velocity = Spread (p.GetComponent<Rigidbody> ().velocity, 20f, (float)multi / 2);
+						p.GetComponent<Rigidbody> ().velocity = Spread (p.GetComponent<Rigidbody> ().velocity, Mathf.Lerp(20f, 12f, size), (float)multi / 2);
 					}
 				}
 			}
