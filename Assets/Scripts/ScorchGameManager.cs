@@ -177,7 +177,6 @@ public class ScorchGameManager : MonoBehaviour {
 			 desktopCamera.transform.LookAt(spawnA.transform.position);
 			 gunMaterial.color = playerBcolor;
 		 }
-
 		 
 		 // show countdown
 
