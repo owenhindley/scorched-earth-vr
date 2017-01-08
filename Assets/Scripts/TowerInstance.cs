@@ -35,8 +35,8 @@ public class TowerInstance : MonoBehaviour {
 		c.transform.position = transform.position + Vector3.up * 2.0f;
 		c.transform.localScale = Vector3.one;
 		
-		c.transform.DOMoveY(c.transform.position.y + 5.0f, 3.0f).SetEase(Ease.Linear);
-		c.transform.DOLocalRotate(Vector3.one * Mathf.PI * 3.0f, 3.0f).OnComplete(()=>{
+		c.transform.DOMoveY(c.transform.position.y + 5.0f, 1.0f).SetEase(Ease.Linear);
+		c.transform.DOLocalRotate(Vector3.one * Mathf.PI * 3.0f, 1.0f).OnComplete(()=>{
 
 			UnityEngine.Object.Destroy(c);
 		}).SetEase(Ease.Linear);
