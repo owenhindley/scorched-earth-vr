@@ -15,11 +15,11 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="ScorchGameManager.cs" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ScorchGameManager.cs" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Assets/Scripts/ScorchGameManager.cs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1392">
-              <caret line="288" column="30" lean-forward="false" selection-start-line="288" selection-start-column="30" selection-end-line="288" selection-end-column="30" />
+            <state relative-caret-position="296">
+              <caret line="47" column="16" lean-forward="false" selection-start-line="47" selection-start-column="15" selection-end-line="47" selection-end-column="16" />
               <folding>
                 <marker date="1483884748383" expanded="true" signature="6:156" ph="..." />
                 <marker date="1483884748383" expanded="true" signature="177:196" ph="{...}" />
@@ -141,19 +141,19 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="VRCameraWait.cs" pinned="false" current-in-tab="false">
+      <file leaf-file-name="VRCameraWait.cs" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Assets/VRCameraWait.cs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="448">
-              <caret line="28" column="57" lean-forward="false" selection-start-line="28" selection-start-column="57" selection-end-line="28" selection-end-column="57" />
+            <state relative-caret-position="464">
+              <caret line="29" column="34" lean-forward="false" selection-start-line="29" selection-start-column="34" selection-end-line="29" selection-end-column="34" />
               <folding>
-                <marker date="1483884707432" expanded="true" signature="6:78" ph="..." />
-                <marker date="1483884707432" expanded="true" signature="121:608" ph="{...}" />
-                <marker date="1483884707432" expanded="true" signature="203:270" ph="{...}" />
-                <marker date="1483884707432" expanded="true" signature="325:332" ph="{...}" />
-                <marker date="1483884707432" expanded="true" signature="370:606" ph="{...}" />
-                <marker date="1483884707432" expanded="true" signature="396:509" ph="{...}" />
-                <marker date="1483884707432" expanded="true" signature="522:600" ph="{...}" />
+                <marker date="1483886134263" expanded="true" signature="6:78" ph="..." />
+                <marker date="1483886134263" expanded="true" signature="121:629" ph="{...}" />
+                <marker date="1483886134263" expanded="true" signature="236:303" ph="{...}" />
+                <marker date="1483886134263" expanded="true" signature="358:365" ph="{...}" />
+                <marker date="1483886134263" expanded="true" signature="403:627" ph="{...}" />
+                <marker date="1483886134263" expanded="true" signature="429:520" ph="{...}" />
+                <marker date="1483886134263" expanded="true" signature="533:621" ph="{...}" />
               </folding>
             </state>
           </provider>
@@ -170,8 +170,8 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/Projectile.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/DrunkenAim.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/TurretFire.cs" />
-        <option value="$PROJECT_DIR$/Assets/VRCameraWait.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/ScorchGameManager.cs" />
+        <option value="$PROJECT_DIR$/Assets/VRCameraWait.cs" />
       </list>
     </option>
   </component>
@@ -307,12 +307,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1483873055654</updated>
-      <workItem from="1483873057646" duration="9046000" />
+      <workItem from="1483873057646" duration="9856000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="9046000" />
+    <option name="totallyTimeSpent" value="9856000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -417,26 +417,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Assets/VRCameraWait.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="448">
-          <caret line="28" column="57" lean-forward="false" selection-start-line="28" selection-start-column="57" selection-end-line="28" selection-end-column="57" />
-          <folding>
-            <marker date="1483884707432" expanded="true" signature="6:78" ph="..." />
-            <marker date="1483884707432" expanded="true" signature="121:608" ph="{...}" />
-            <marker date="1483884707432" expanded="true" signature="203:270" ph="{...}" />
-            <marker date="1483884707432" expanded="true" signature="325:332" ph="{...}" />
-            <marker date="1483884707432" expanded="true" signature="370:606" ph="{...}" />
-            <marker date="1483884707432" expanded="true" signature="396:509" ph="{...}" />
-            <marker date="1483884707432" expanded="true" signature="522:600" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Assets/Scripts/ScorchGameManager.cs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1392">
-          <caret line="288" column="30" lean-forward="false" selection-start-line="288" selection-start-column="30" selection-end-line="288" selection-end-column="30" />
+        <state relative-caret-position="296">
+          <caret line="47" column="16" lean-forward="false" selection-start-line="47" selection-start-column="15" selection-end-line="47" selection-end-column="16" />
           <folding>
             <marker date="1483884748383" expanded="true" signature="6:156" ph="..." />
             <marker date="1483884748383" expanded="true" signature="177:196" ph="{...}" />
@@ -487,6 +471,22 @@
             <marker date="1483884748383" expanded="true" signature="9223:9413" ph="{...}" />
             <marker date="1483884748383" expanded="true" signature="9439:9531" ph="{...}" />
             <marker date="1483884748383" expanded="true" signature="9475:9525" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Assets/VRCameraWait.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="464">
+          <caret line="29" column="34" lean-forward="false" selection-start-line="29" selection-start-column="34" selection-end-line="29" selection-end-column="34" />
+          <folding>
+            <marker date="1483886134263" expanded="true" signature="6:78" ph="..." />
+            <marker date="1483886134263" expanded="true" signature="121:629" ph="{...}" />
+            <marker date="1483886134263" expanded="true" signature="236:303" ph="{...}" />
+            <marker date="1483886134263" expanded="true" signature="358:365" ph="{...}" />
+            <marker date="1483886134263" expanded="true" signature="403:627" ph="{...}" />
+            <marker date="1483886134263" expanded="true" signature="429:520" ph="{...}" />
+            <marker date="1483886134263" expanded="true" signature="533:621" ph="{...}" />
           </folding>
         </state>
       </provider>

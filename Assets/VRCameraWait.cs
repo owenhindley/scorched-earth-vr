@@ -5,6 +5,7 @@ using UnityEngine;
 public class VRCameraWait : MonoBehaviour
 {
 
+    public LayerMask VRWaitMask;
     private LayerMask ogMasks;
 
 	// Use this for initialization
@@ -22,11 +23,11 @@ public class VRCameraWait : MonoBehaviour
     {
         if (enable)
         {
-            GetComponentInChildren<Camera>().cullingMask = LayerMask.NameToLayer("VR Wait");
+            GetComponentInChildren<Camera>().cullingMask = VRWaitMask;
         }
         else
         {
-            GetComponent<Camera>().cullingMask = ogMasks;
+            GetComponentInChildren<Camera>().cullingMask = ogMasks;
         }
     }
 }
