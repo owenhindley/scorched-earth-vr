@@ -40,9 +40,9 @@ public class CardDisplay : MonoBehaviour {
 
 		icon.sprite = cardData.img;
 		
-		Color c = cardData.color;
-		c.a = 1.0f;
-		background.color = c;
+		// Color c = cardData.color;
+		// c.a = 1.0f;
+		// background.color = c;
 
 	}
 
