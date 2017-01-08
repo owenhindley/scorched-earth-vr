@@ -41,6 +41,8 @@ public class ChooseCardView : MonoBehaviour {
 			
 		}
 
+		cardSelectedIndex = 0;
+
 	}
 	
 	// Update is called once per frame
