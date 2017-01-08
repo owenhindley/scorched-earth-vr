@@ -71,6 +71,10 @@ public class ScorchGameManager : MonoBehaviour {
 	public PlayerGunState gunStateA;
 	public PlayerGunState gunStateB;
 
+	public Material gunMaterial;
+	public Color playerAcolor;
+	public Color playerBcolor;
+
 	public Players currentPlayer = Players.B;
 
 	public int playerRoundScore = 0;
@@ -164,12 +168,14 @@ public class ScorchGameManager : MonoBehaviour {
 			 viveCameraRig.transform.rotation = spawnA.transform.rotation;
 			 desktopCamera.transform.position = audienceA.transform.position;
 			 desktopCamera.transform.LookAt(spawnB.transform.position);
+			 gunMaterial.color = playerAcolor;
 		 }
 		 else {
 			 viveCameraRig.transform.position = spawnB.transform.position;
 			 viveCameraRig.transform.rotation = spawnB.transform.rotation;
 			 desktopCamera.transform.position = audienceB.transform.position;
 			 desktopCamera.transform.LookAt(spawnA.transform.position);
+			 gunMaterial.color = playerBcolor;
 		 }
 
 		 
