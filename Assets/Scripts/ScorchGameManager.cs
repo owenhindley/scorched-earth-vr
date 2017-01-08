@@ -287,7 +287,7 @@ public class ScorchGameManager : MonoBehaviour {
 		 cardView.gameObject.SetActive(true);
 
 	     //Only render VR Wait
-	     //viveCameraRig.GetComponentInChildren<Camera>().cullingMask = LayerMask.NameToLayer("VR Wait");
+	     viveCameraRig.GetComponentInChildren<VRCameraWait>().SetWait(true);
 
 	 }
 	 void ChooseCards_Update(){}
@@ -295,7 +295,7 @@ public class ScorchGameManager : MonoBehaviour {
 		 cardView.gameObject.SetActive(false);
 
 	     //Render everything in VR
-	     //viveCameraRig.GetComponentInChildren<Camera>().cullingMask =
+	     viveCameraRig.GetComponentInChildren<VRCameraWait>().SetWait(false);
 	 }
 
 
