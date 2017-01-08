@@ -35,7 +35,7 @@
 				UNITY_FOG_COORDS(1)
 				float4 vertex : SV_POSITION;
 				float4 normal : TEXCOORD2;
-				float4 original : TEXCOORD1;
+				float4 orig : TEXCOORD3;
 			};
 
 			float4 _Main;
@@ -46,7 +46,7 @@
 			{
 				v2f o;
 				o.vertex = UnityObjectToClipPos(v.vertex);
-				o.original = v.vertex;
+				o.orig = v.vertex;
 				o.normal = v.normal;
 				UNITY_TRANSFER_FOG(o,o.vertex);
 				return o;
@@ -56,7 +56,7 @@
 			{
 				// sample the texture
 				float4 col;
-				col = lerp(_Main, _Secondary, i.original.y * _yMax);
+				col = lerp(_Main, _Secondary, i.orig.y * _yMax);
 				// apply fog
 				UNITY_APPLY_FOG(i.fogCoord, col);
 				// col = float4(i.normal);
