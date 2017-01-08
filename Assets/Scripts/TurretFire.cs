@@ -39,6 +39,8 @@ public class TurretFire : MonoBehaviour {
 	public Transform projectileEmit;
 	public GameObject projectileSource;
 
+	public GameObject fireReadyIndicator;
+
 	// Use this for initialization
 	void Start () {
 		
@@ -74,25 +76,37 @@ public class TurretFire : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		if (isFiring){
+		
 			float fireTimeInterval = Mathf.Lerp(minFireInterval, maxFireInterval, Mathf.Lerp(1.0f, 0.0f, rate * 1.5f));
 
 			if (Time.time - lastFireTime > fireTimeInterval) {
-				//Firing
-				lastFireTime = Time.time;
 
-				Debug.Log ("Fire!");
-				for (int i = 0; i < multi; i++) {
-					var p = Instantiate (projectileSource, projectileEmit.position, projectileEmit.rotation);
-					p.GetComponent<Projectile> ().SetAttributes (Mathf.Lerp(minScale, maxScale, size), aim, guide);
+				fireReadyIndicator.SetActive(true);
 
-					//Keep first shot straight
-					if (i > 0) {
-						p.GetComponent<Rigidbody> ().velocity = Spread (p.GetComponent<Rigidbody> ().velocity, Mathf.Lerp(20f, 12f, size), (float)multi / 2);
+				if (isFiring){
+
+					//Firing
+					lastFireTime = Time.time;
+
+					Debug.Log ("Fire!");
+					for (int i = 0; i < multi; i++) {
+						var p = Instantiate (projectileSource, projectileEmit.position, projectileEmit.rotation);
+						p.GetComponent<Projectile> ().SetAttributes (Mathf.Lerp(minScale, maxScale, size), aim, guide);
+
+						//Keep first shot straight
+						if (i > 0) {
+							p.GetComponent<Rigidbody> ().velocity = Spread (p.GetComponent<Rigidbody> ().velocity, Mathf.Lerp(20f, 12f, size), (float)multi / 2);
+						}
 					}
+
+				}
+
+			} else {
+				if (fireReadyIndicator != null){
+					fireReadyIndicator.SetActive(false);
 				}
 			}
-		}
+		
 
 		//Aim shake
 		var randCircle = Random.insideUnitCircle;
