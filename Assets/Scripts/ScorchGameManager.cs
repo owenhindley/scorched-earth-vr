@@ -331,18 +331,23 @@ public class ScorchGameManager : MonoBehaviour {
 		 switch(type){
 			 case CardEffectType.Aim:
 			 	state.Aim += val * (positive ? 1.0f : -1.0f);
+				state.Aim = Mathf.Clamp(state.Aim, -10.0f, 10.0f);
 			 break;
 			 case CardEffectType.Guidance:
 			 	state.Guidance += val * (positive ? 1.0f : -1.0f);
+				state.Guidance = Mathf.Clamp(state.Guidance, -10.0f, 10.0f);
 			 break;
 			 case CardEffectType.Multi:
 			 	state.Multi += val * (positive ? 1 : -1);
+				state.Multi = Mathf.Clamp(state.Multi, 1, 100);
 			 break;
 			 case CardEffectType.Rate:
 			 	state.Rate += val * (positive ? 1.0f : -1.0f);
+				state.Rate = Mathf.Clamp(state.Rate, -10.0f, 10.0f);
 			 break;
 			  case CardEffectType.Size:
 			 	state.Size += val * (positive ? 1.0f : -1.0f);
+				state.Size = Mathf.Clamp(state.Size, -10.0f, 10.0f);
 			 break;
 		 }
 	 }
