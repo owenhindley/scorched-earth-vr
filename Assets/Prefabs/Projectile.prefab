@@ -120,5 +120,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0145e03993194bc40a8be941fe551b45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseSpeed: 25
-  magneRadius: 1.7
+  baseSpeed: 50
+  magneRadius: 2
