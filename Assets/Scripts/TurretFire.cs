@@ -33,15 +33,20 @@ public class TurretFire : MonoBehaviour {
 	private float lastFireTime = 0;
 
 	//Aim shake
-	[Range(0.0f, 5f)]
-	public float shakeAmplitude;
+	//[Range(0.0f, 5f)]
+	//public float shakeAmplitude;
 
 	public Transform projectileEmit;
 	public GameObject projectileSource;
 
+    public float wiggleSpeed = 1.0f;
+    public float wiggleAmplitude = 0.01f;
+    public int octaves = 3;
+
+    private float wiggleIndex = 0.0f;
+
 	public GameObject fireReadyIndicator;
 
-	// Use this for initialization
 	void Start () {
 		
 		GetComponentInParent<VRTK_ControllerEvents>().TriggerHairlineStart += new ControllerInteractionEventHandler(DoOnTriggerStart);
@@ -76,8 +81,7 @@ public class TurretFire : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		
-			float fireTimeInterval = Mathf.Lerp(minFireInterval, maxFireInterval, Mathf.Lerp(1.0f, 0.0f, rate * 1.5f));
+			float fireTimeInterval = Mathf.Lerp(minFireInterval, maxFireInterval, Mathf.Lerp(1.0f, 0.0f, rate * 2f));
 
 			if (Time.time - lastFireTime > fireTimeInterval) {
 
@@ -109,9 +113,18 @@ public class TurretFire : MonoBehaviour {
 		
 
 		//Aim shake
-		var randCircle = Random.insideUnitCircle;
+		/*var randCircle = Random.insideUnitCircle;
 		randCircle = Vector2.Scale (randCircle, new Vector2 (Mathf.Lerp(shakeAmplitude, 0, aim), Mathf.Lerp(shakeAmplitude, 0, aim)));
 		transform.localEulerAngles = new Vector3 (transform.localEulerAngles.x + randCircle.x, transform.localEulerAngles.y + randCircle.y, transform.localEulerAngles.z);
+*/
+	    wiggleIndex += wiggleSpeed * Time.deltaTime;
+	    float angle = 0.0f;
+	    for (int i=1; i < octaves; i++){
+	        angle += (wiggleIndex * i)/i;
+
+	    }
+	    transform.RotateAround(Vector3.up, Mathf.Sin(angle) * wiggleAmplitude * (1f - aim));
+	    transform.RotateAround(Vector3.left, Mathf.Cos(angle * 1.3f) * wiggleAmplitude * (1f - aim));
 	}
 
 	private void DoOnTriggerStart(object sender, ControllerInteractionEventArgs e)
