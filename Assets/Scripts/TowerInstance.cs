@@ -10,6 +10,7 @@ public class TowerInstance : MonoBehaviour {
 	public int index;
 
 	public GameObject cardPrefab;
+	
 
 	[InspectorButton("releaseCard")] public bool doReleaseCard = false;
 
@@ -31,11 +32,11 @@ public class TowerInstance : MonoBehaviour {
 
 		GameObject c = (GameObject)UnityEngine.Object.Instantiate(cardPrefab, transform);
 		c.transform.parent = transform.parent.parent;
-		c.transform.position = transform.position;
+		c.transform.position = transform.position + Vector3.up * 2.0f;
 		c.transform.localScale = Vector3.one;
 		
-		c.transform.DOMoveY(c.transform.position.y + 0.2f, 5.0f).SetEase(Ease.Linear);
-		c.transform.DOLocalRotate(Vector3.one * Mathf.PI * 3.0f, 5.0f).OnComplete(()=>{
+		c.transform.DOMoveY(c.transform.position.y + 5.0f, 3.0f).SetEase(Ease.Linear);
+		c.transform.DOLocalRotate(Vector3.one * Mathf.PI * 3.0f, 3.0f).OnComplete(()=>{
 
 			UnityEngine.Object.Destroy(c);
 		}).SetEase(Ease.Linear);
