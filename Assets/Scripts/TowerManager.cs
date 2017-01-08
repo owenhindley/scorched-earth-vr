@@ -25,7 +25,7 @@ public class TowerManager : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
-		numberAliveTowers = numberTowers;
+		
 
 		// create towers
 
@@ -52,7 +52,7 @@ public class TowerManager : MonoBehaviour {
 		}
 
 		numberTowers = towers.Count;
-		
+		numberAliveTowers = numberTowers;
 
 
 		towerNumberChanged.Dispatch(numberAliveTowers);
