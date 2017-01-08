@@ -19,7 +19,7 @@ public class Projectile : MonoBehaviour {
 		transform.Rotate (Vector3.right, 90);
 
 		//Guide
-		/*TowerManager enemyTowers;
+		TowerManager enemyTowers;
 		var player = ScorchGameManager.Instance.currentPlayer;
 		if (player == Players.A) {
 			enemyTowers = ScorchGameManager.Instance.playerBTowers;
@@ -43,7 +43,7 @@ public class Projectile : MonoBehaviour {
 			float index = (magneRadius-magnetField.magnitude)/magneRadius;
 			GetComponent<Rigidbody>().AddForce(force*magnetField*index);
 
-		}*/
+		}
 
 		if (transform.position.y < -8f || transform.position.y > 100f) {
 			Destroy (gameObject);
