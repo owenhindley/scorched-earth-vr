@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using VRTK;
 using Random = UnityEngine.Random;
@@ -50,12 +51,14 @@ public class TurretFire : MonoBehaviour {
     private float wiggleIndex = 0.0f;
 
 	public GameObject fireReadyIndicator;
+    public TextMeshPro countdownIndicator;
 
 	void Start () {
 		
 		GetComponentInParent<VRTK_ControllerEvents>().TriggerHairlineStart += new ControllerInteractionEventHandler(DoOnTriggerStart);
 		GetComponentInParent<VRTK_ControllerEvents>().TriggerHairlineEnd += new ControllerInteractionEventHandler(DoOnTriggerEnd);
-	    ogRotation = transform.rotation;
+	    ogRotation = transform.localRotation;
+	    Debug.Log(transform.localRotation);
 	}
 
 	void OnEnable(){
@@ -82,7 +85,15 @@ public class TurretFire : MonoBehaviour {
 		}
 
 	    //Reset rotation
-	    transform.rotation = ogRotation;
+	    Debug.Log("Set rotation");
+	    if (ogRotation.x != 0f)
+	    {
+	        transform.localRotation = ogRotation;
+	    }
+	    else
+	    {
+	        Debug.Log("rotation null");
+	    }
 	}
 	
 	// Update is called once per frame
@@ -93,8 +104,8 @@ public class TurretFire : MonoBehaviour {
 			if (Time.time - lastFireTime > fireTimeInterval) {
 
 				fireReadyIndicator.SetActive(true);
-
-				if (isFiring){
+			    countdownIndicator.SetText("");
+			    if (isFiring){
 
 					//Firing
 					lastFireTime = Time.time;
@@ -114,8 +125,11 @@ public class TurretFire : MonoBehaviour {
 
 				}
 
-			} else {
-				if (fireReadyIndicator != null){
+			} else
+			{
+			    int interval = (int)fireTimeInterval - (int)(Time.time - lastFireTime);
+			    countdownIndicator.SetText(interval.ToString("00"));
+			    if (fireReadyIndicator != null){
 					fireReadyIndicator.SetActive(false);
 				}
 			}

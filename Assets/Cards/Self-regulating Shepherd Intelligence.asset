@@ -13,8 +13,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardName: Self-regulating Shepherd Intelligence
   positiveType: 4
-  positiveValue: 3
+  positiveValue: 5
   negativeType: 3
-  negativeValue: 3
+  negativeValue: 8
   color: {r: 0, g: 0, b: 0, a: 1}
   img: {fileID: 0}

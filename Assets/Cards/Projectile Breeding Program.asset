@@ -13,6 +13,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardName: Projectile Breeding Program
   positiveType: 3
-  positiveValue: 3
+  positiveValue: 8
   negativeType: 1
-  negativeValue: 3
+  negativeValue: 6
+  color: {r: 0, g: 0, b: 0, a: 1}
+  img: {fileID: 0}

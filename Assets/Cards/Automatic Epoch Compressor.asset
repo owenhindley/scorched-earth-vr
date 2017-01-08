@@ -13,6 +13,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardName: Automatic Epoch Compressor
   positiveType: 2
-  positiveValue: 3
+  positiveValue: 6
   negativeType: 1
-  negativeValue: 3
+  negativeValue: 6
+  color: {r: 0, g: 0, b: 0, a: 1}
+  img: {fileID: 0}

@@ -13,6 +13,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardName: Pontifular Gabberfier
   positiveType: 2
-  positiveValue: 2
+  positiveValue: 6
   negativeType: 3
   negativeValue: 8
+  color: {r: 0, g: 0, b: 0, a: 1}
+  img: {fileID: 0}

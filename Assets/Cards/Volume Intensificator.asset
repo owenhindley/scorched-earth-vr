@@ -13,6 +13,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardName: Volume Intensificator
   positiveType: 1
-  positiveValue: 3
+  positiveValue: 6
   negativeType: 0
-  negativeValue: 3
+  negativeValue: 4
+  color: {r: 0, g: 0, b: 0, a: 1}
+  img: {fileID: 0}

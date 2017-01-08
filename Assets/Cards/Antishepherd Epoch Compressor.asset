@@ -13,8 +13,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardName: Antishepherd Epoch Compressor
   positiveType: 2
-  positiveValue: 3
+  positiveValue: 6
   negativeType: 4
-  negativeValue: 3
+  negativeValue: 6
   color: {r: 0, g: 0, b: 0, a: 0}
   img: {fileID: 0}
