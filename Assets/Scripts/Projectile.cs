@@ -5,15 +5,12 @@ using UnityEngine;
 public class Projectile : MonoBehaviour {
 
 	public float baseSpeed;
-	private float radius = 5f;
+	public float magneRadius = 2f;
 	private float force;
 	private Transform targetTower;
 	// Use this for initialization
 	void Start () {
-		
-		
 
-		
 	}
 	
 	// Update is called once per frame
@@ -43,9 +40,13 @@ public class Projectile : MonoBehaviour {
 			targetTower = enemyTowers.towers [i].transform;
 		
 			Vector3 magnetField = targetTower.position- transform.position;
-			float index = (radius-magnetField.magnitude)/radius;
+			float index = (magneRadius-magnetField.magnitude)/magneRadius;
 			GetComponent<Rigidbody>().AddForce(force*magnetField*index);
 
+		}
+
+		if (transform.position.y < -8f || transform.position.y > 100f) {
+			Destroy (gameObject);
 		}
 		
 	}
@@ -54,7 +55,14 @@ public class Projectile : MonoBehaviour {
 		transform.localScale = new Vector3 (size, size, size);
 		GetComponent<Rigidbody> ().isKinematic = false;
 		GetComponent<Rigidbody> ().velocity += transform.up * (baseSpeed - ((baseSpeed / 2) * size));
-		force = -guide;
+	    if (guide >= 0.5)
+	    {
+	        force = -Mathf.Lerp(-1f, 1f, guide);
+	    }
+	    else
+	    {
+	        force = -Mathf.Lerp(-0.5f, 2f, guide);
+	    }
 	}
 
 	void OnCollisionEnter(Collision col){
