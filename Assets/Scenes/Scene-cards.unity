@@ -275,63 +275,9 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 114806531270290652, guid: 56edf0874e8ee45c09c1520732663594,
-        type: 2}
-      propertyPath: m_havePropertiesChanged
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114806531270290652, guid: 56edf0874e8ee45c09c1520732663594,
-        type: 2}
-      propertyPath: m_isInputParsingRequired
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114091531816883756, guid: 56edf0874e8ee45c09c1520732663594,
-        type: 2}
-      propertyPath: m_havePropertiesChanged
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114091531816883756, guid: 56edf0874e8ee45c09c1520732663594,
-        type: 2}
-      propertyPath: m_isInputParsingRequired
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114076363321023788, guid: 56edf0874e8ee45c09c1520732663594,
-        type: 2}
-      propertyPath: m_havePropertiesChanged
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114076363321023788, guid: 56edf0874e8ee45c09c1520732663594,
-        type: 2}
-      propertyPath: m_isInputParsingRequired
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114141270835819600, guid: 56edf0874e8ee45c09c1520732663594,
-        type: 2}
-      propertyPath: m_havePropertiesChanged
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114141270835819600, guid: 56edf0874e8ee45c09c1520732663594,
-        type: 2}
-      propertyPath: m_isInputParsingRequired
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114758292754226162, guid: 56edf0874e8ee45c09c1520732663594,
-        type: 2}
-      propertyPath: m_havePropertiesChanged
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114758292754226162, guid: 56edf0874e8ee45c09c1520732663594,
-        type: 2}
-      propertyPath: m_isInputParsingRequired
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 1802097353993778, guid: 56edf0874e8ee45c09c1520732663594, type: 2}
       propertyPath: m_Name
       value: CardDisplayPrefab
-      objectReference: {fileID: 0}
-    - target: {fileID: 1802097353993778, guid: 56edf0874e8ee45c09c1520732663594, type: 2}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 56edf0874e8ee45c09c1520732663594, type: 2}
